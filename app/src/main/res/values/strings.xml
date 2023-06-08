@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">MySportApp</string>
-    <string name="google_maps_key">AIzaSyDEjwozOuWPCml3rUCXtsVaK2nYqn0BY9M</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_maps_key"></string>
 </resources>
