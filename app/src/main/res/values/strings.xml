@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">MySportApp</string>
-    <string name="google_maps_key"></string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDEjwozOuWPCml3rUCXtsVaK2nYqn0BY9M</string>
+
+    <string-array name="filter_options">
+        <item>Date</item>
+        <item>Running Time</item>
+        <item>Distance</item>
+        <item>Average Speed</item>
+        <item>Calories Burned</item>
+    </string-array>
+
 </resources>
