@@ -17,6 +17,7 @@ import com.muzo.mysportapp.other.Constants.ACTION_START_OR_RESUME_SERVICE
 import com.muzo.mysportapp.other.Constants.MAP_ZOOM
 import com.muzo.mysportapp.other.Constants.POLYLINE_COLOR
 import com.muzo.mysportapp.other.Constants.POLYLINE_WIDTH
+import com.muzo.mysportapp.other.TrackingUtility
 import com.muzo.mysportapp.services.Polyline
 import com.muzo.mysportapp.services.TrackingService
 import com.muzo.mysportapp.ui.viewmodels.MainViewModel
@@ -30,6 +31,7 @@ class TrackingFragment : Fragment() {
     private var isTracking=false
     private var pathPoints= mutableListOf<Polyline>()
     private var map: GoogleMap? = null
+    private var curTimeInMillis=0L
 
 
     override fun onCreateView(
@@ -63,6 +65,11 @@ class TrackingFragment : Fragment() {
             pathPoints=it
             addLatestPolyline()
             moveCameraToUser()
+        })
+        TrackingService.timeRunInMilis.observe(viewLifecycleOwner, Observer {
+            curTimeInMillis=it
+            val formattedTIme=TrackingUtility.getFormattedStopWatchTime(curTimeInMillis,true)
+            binding.tvTimer.text=formattedTIme
         })
     }
     private fun toggleRun(){
