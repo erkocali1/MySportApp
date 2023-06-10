@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MySportApp</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDEjwozOuWPCml3rUCXtsVaK2nYqn0BY9M</string>
 
     <string-array name="filter_options">
         <item>Date</item>
@@ -9,5 +8,5 @@
         <item>Average Speed</item>
         <item>Calories Burned</item>
     </string-array>
-
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDEjwozOuWPCml3rUCXtsVaK2nYqn0BY9M</string>
 </resources>
