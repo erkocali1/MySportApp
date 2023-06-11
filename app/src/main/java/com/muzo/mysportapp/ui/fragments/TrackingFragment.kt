@@ -36,6 +36,7 @@ import com.muzo.mysportapp.services.TrackingService
 import com.muzo.mysportapp.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
+import javax.inject.Inject
 import kotlin.math.round
 
 @AndroidEntryPoint
@@ -49,7 +50,9 @@ class TrackingFragment : Fragment(), MenuProvider {
     private var curTimeInMillis = 0L
 
     private var menu: Menu? = null
-    private var weight=80f
+
+    @set:Inject
+     var weight=80f
 
 
     override fun onCreateView(
