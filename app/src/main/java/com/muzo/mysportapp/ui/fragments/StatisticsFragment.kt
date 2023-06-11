@@ -1,5 +1,6 @@
 package com.muzo.mysportapp.ui.fragments
 
+import CustomMarkerView
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -38,6 +39,7 @@ class StatisticsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         subscribeToObservers()
+        setupBarChart()
     }
     private fun setupBarChart(){
         binding.barChart.xAxis.apply {
@@ -104,6 +106,7 @@ class StatisticsFragment : Fragment() {
 
                 }
                 binding.barChart.data= BarData(bardataSet)
+                binding.barChart.marker=CustomMarkerView(it.reversed(),requireContext(),R.layout.marker_view)
                 binding.barChart.invalidate()
             }
         })
