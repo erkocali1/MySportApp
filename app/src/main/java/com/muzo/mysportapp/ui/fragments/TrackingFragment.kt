@@ -19,7 +19,6 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.muzo.mysportapp.R
 import com.muzo.mysportapp.databinding.FragmentTrackingBinding
@@ -39,6 +38,8 @@ import java.util.Calendar
 import javax.inject.Inject
 import kotlin.math.round
 
+const val CANCEL_TRACKING_DIALOG_TAG = "CancelDialog"
+
 @AndroidEntryPoint
 class TrackingFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentTrackingBinding
@@ -52,7 +53,7 @@ class TrackingFragment : Fragment(), MenuProvider {
     private var menu: Menu? = null
 
     @set:Inject
-     var weight=80f
+    var weight = 80f
 
 
     override fun onCreateView(
@@ -85,20 +86,16 @@ class TrackingFragment : Fragment(), MenuProvider {
     }
 
     private fun showCancelTrackingDialog() {
-        val dialog = MaterialAlertDialogBuilder(
-            requireContext(),
-            R.style.AlertDialogTheme
-        ).setTitle("Cancel the Run")
-            .setMessage("Are you Sure to cancel the current run and delete all its data?")
-            .setIcon(R.drawable.ic_delete).setPositiveButton("yes") { _, _ ->
+        CancelTrackingDialog().apply {
+            setYesListener {
                 stopRun()
-            }.setNegativeButton("No") { dialogInterface, _ ->
-                dialogInterface.cancel()
-            }.create()
-        dialog.show()
+            }
+        }.show(parentFragmentManager, CANCEL_TRACKING_DIALOG_TAG)
+
     }
 
     private fun stopRun() {
+        binding.tvTimer.text="00:00:00:00"
         sendCommandToService(ACTION_STOP_SERVICE)
         findNavController().navigate(R.id.action_trackingFragment_to_runFragment)
     }
@@ -108,11 +105,23 @@ class TrackingFragment : Fragment(), MenuProvider {
         binding.mapView.onCreate(savedInstanceState)
         binding.btnToggleRun.setOnClickListener {
             toggleRun()
-            binding.btnFinishRun.setOnClickListener {
-                zoomToSeeWholeTrack()
-                endRunAndSaveToDb()
-            }
+
         }
+
+        if (savedInstanceState!=null){
+            val cancelTrackingDialog=parentFragmentManager.findFragmentByTag(
+                CANCEL_TRACKING_DIALOG_TAG) as CancelTrackingDialog
+            cancelTrackingDialog?.setYesListener {
+                stopRun()
+            }
+
+        }
+
+        binding.btnFinishRun.setOnClickListener {
+            zoomToSeeWholeTrack()
+            endRunAndSaveToDb()
+        }
+
         binding.mapView.getMapAsync {
             map = it
             addPolylines()
@@ -148,10 +157,10 @@ class TrackingFragment : Fragment(), MenuProvider {
 
     private fun updateTracking(isTracking: Boolean) {
         this.isTracking = isTracking
-        if (!isTracking) {
+        if (!isTracking && curTimeInMillis > 0) {
             binding.btnToggleRun.text = "Start"
             binding.btnFinishRun.visibility = View.VISIBLE
-        } else {
+        } else if (isTracking) {
             binding.btnToggleRun.text = "STOP"
             menu?.getItem(0)?.isVisible = true
             binding.btnFinishRun.visibility = View.GONE
@@ -189,13 +198,15 @@ class TrackingFragment : Fragment(), MenuProvider {
     private fun endRunAndSaveToDb() {
         map?.snapshot { bmp ->
             var distanceInMeters = 0
-            for (polyline in pathPoints){
+            for (polyline in pathPoints) {
                 distanceInMeters += TrackingUtility.calculatePolylineLent(polyline).toInt()
             }
-            val avgSpeed= round((distanceInMeters/1000f) /(curTimeInMillis/1000f/60/60)*10)/10f
-            val dateTimestamp=Calendar.getInstance().timeInMillis
-            val caloriesBurned=((distanceInMeters/1000f)*weight).toInt()
-            val run= Run(bmp,dateTimestamp,avgSpeed,distanceInMeters,curTimeInMillis,caloriesBurned)
+            val avgSpeed =
+                round((distanceInMeters / 1000f) / (curTimeInMillis / 1000f / 60 / 60) * 10) / 10f
+            val dateTimestamp = Calendar.getInstance().timeInMillis
+            val caloriesBurned = ((distanceInMeters / 1000f) * weight).toInt()
+            val run =
+                Run(bmp, dateTimestamp, avgSpeed, distanceInMeters, curTimeInMillis, caloriesBurned)
             viewModel.insertRun(run)
             Snackbar.make(
                 requireActivity().findViewById(R.id.rootView),

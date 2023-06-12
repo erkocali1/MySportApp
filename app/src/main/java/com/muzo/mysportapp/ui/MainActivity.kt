@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         navController=Navigation.findNavController(this,R.id.navHostFragment)
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navController)
 
+
        navController.addOnDestinationChangedListener{_, destination, _ ->
 
            when(destination.id){
