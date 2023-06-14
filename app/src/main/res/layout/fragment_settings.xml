@@ -47,15 +47,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/butisko"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="selam"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="80dp"/>
-
-
-    <Button
         android:id="@+id/buttonChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -45,18 +45,18 @@ class StatisticsFragment : Fragment() {
         binding.barChart.xAxis.apply {
             position=XAxis.XAxisPosition.BOTTOM
             setDrawLabels(false)
-            axisLineColor= Color.WHITE
-            textColor=Color.WHITE
+            axisLineColor= Color.BLACK
+            textColor=Color.BLACK
             setDrawGridLines(false)
         }
         binding.barChart.axisLeft.apply {
-            axisLineColor= Color.WHITE
-            textColor=Color.WHITE
+            axisLineColor= Color.BLACK
+            textColor=Color.BLACK
             setDrawGridLines(false)
         }
         binding.barChart.axisRight.apply {
-            axisLineColor= Color.WHITE
-            textColor=Color.WHITE
+            axisLineColor= Color.BLACK
+            textColor=Color.BLACK
             setDrawGridLines(false)
         }
         binding.barChart.apply {
@@ -101,7 +101,7 @@ class StatisticsFragment : Fragment() {
                 val allAvgSpeeds=it.indices.map { i->BarEntry(i.toFloat(),it[i].avgSpeedInKm!!) }
                 val bardataSet=BarDataSet(allAvgSpeeds,"Avg Speed OverTime").apply {
 
-                    valueTextColor=Color.WHITE
+                    valueTextColor=Color.BLACK
                     color=ContextCompat.getColor((requireContext()), R.color.colorAccent)
 
                 }

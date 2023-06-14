@@ -46,11 +46,26 @@
     </style>
 
     <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Monstserrat">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">36dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="MonstserratSmall">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">20dp</item>
         <item name="android:textColor">@color/colorAccent</item>
     </style>
+
+
+
 
 </resources>

@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:text="Welcome!\nPlease enter your name and weight."
         android:textAlignment="center"
-        android:textSize="36sp"
+        style="@style/Monstserrat"
         android:background="@color/md_blue_100"
         app:layout_constraintBottom_toTopOf="@+id/tilName"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -91,13 +91,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Continue"
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"
+            style="@style/MonstserratSmall"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

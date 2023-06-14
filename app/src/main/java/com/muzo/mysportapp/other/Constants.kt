@@ -20,6 +20,10 @@ object Constants {
     const val KEY_NAME="KEY_NAME"
     const val KEY_WEIGHT="KEY_FIRST_TIME_TOGGLE"
 
+    const val PREFS_NAME = "com.muzo.mysportapp.PREFS_NAME"
+    const val PREF_FIRST_APP_OPEN = "com.muzo.mysportapp.PREF_FIRST_APP_OPEN"
+
+
 
     const val LOCATION_UPDATE_INTERVAL = 5000L
     const val FASTEST_LOCATION_INTERVAL = 2000L
