@@ -5,7 +5,7 @@ Developed in Kotlin, this application is developed using Google Maps services an
 
 <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
   <img src="https://github.com/erkocali1/ss/blob/master/app/src/main/res/drawable/gif.gif" width="350" height="550">
-  <p style="text-align: center; font-size: 16px; color: #4287f5;">Yükleniyor...</p>
+  <p style="text-align: center; font-size: 36px; color: #4287f5;">Gif Yükleniyor Görüntülemek İcin Bekleyiniz...</p>
   <div style="width: 200px; height: 20px; background-color: #eee; border-radius: 10px; overflow: hidden;">
     <div style="width: 50%; height: 100%; background-color: #4287f5; border-radius: 10px;"></div>
   </div>
